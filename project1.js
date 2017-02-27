@@ -30,6 +30,8 @@ function init() {
     dragon.y = 342;
 
     stage.addChild(dragon);
+    
+    dragAndDrop(dragon);
 
     //fireball graphic and shape code
 
@@ -50,3 +52,15 @@ function newFireball() {
 
 }
 
+function dragAndDrop(s) {
+    s.addEventListener('mousedown', function (e) {
+        stage.addEventListener('stagemousemove', function (e) {
+            s.x = stage.mouseX;
+            s.y = stage.mouseY;
+            stage.update();
+        });
+        stage.addEventListener('stagemouseup', function (e) {
+            e.target.removeAllEventListeners();
+        });
+    });
+}
